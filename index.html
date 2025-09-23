@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Enviar Mensagem WhatsApp</title>
+    <style>
+      body {
+        font-family: "Popppins", sans-serif;
+        background-color: #fcf5eb;
+        color: #161616de;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .about {
+        display: flex;
+        justify-content: right;
+
+        position: relative;
+      }
+      .bx-btn {
+        font-size: 28px !important;
+      }
+
+      .bx {
+        font-size: 18px;
+
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+      }
+      .bx:hover {
+        color: #25d366;
+      }
+      .ddd {
+        width: 72px;
+        margin-right: 16px;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+        margin-bottom: 48px;
+        max-width: 100%;
+      }
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      h1 {
+        color: #128c7e;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      h2 {
+        color: #161616de;
+        text-align: left;
+        margin-bottom: 32px;
+        font-weight: 500;
+        font-size: 16px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        color: #333; */
+      }
+      .container-number {
+        width: 254px;
+
+      }
+      .container-numbers {
+        display: flex;
+        flex-direction: row;
+      }
+      .textarea-grid {
+        display: grid;
+        grid-template-columns: 1fr 15%;
+        justify-content: center;
+        align-items: end;
+      }
+      .number-group{
+
+          display: flex;
+          flex-direction: column;
+
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      textarea {
+        resize: vertical;
+        height: 120px;
+      }
+      button {
+        background-color: #07a541;
+        /* font-weight: bold; */
+        cursor: pointer;
+        /* border: 1px solid #9b9c9d; */
+        border-radius: 50%;
+        color: #f2f2f2;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* line-height: 16px; */
+        /* overflow: hidden; */
+        padding: 4px;
+        margin: 8px;
+        margin-bottom: 19px;
+        /* position: relative; */
+
+        transition: color 0.33s linear 0.5s, border-color ease-out 0.5s,
+          background-color 0.33s linear 0s;
+        width: 48px;
+        height: 48px;
+      }
+      button:hover {
+        background-color: #1d9834;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="about">
+        <i class="bx bx-help-circle"></i>
+      </div>
+      <div class="header">
+        <img src="./assets/JvsnINJ2CZv.svg" alt="" />
+      </div>
+      <h2>Envie mensagem para alguém sem adicionar aos contato</h2>
+      <form id="whatsappForm">
+        <div class="container-numbers">
+          <div class="number-group">
+            <label for="phoneArea">DDD</label>
+            <div class="ddd">
+              <input type="text" id="phoneArea" placeholder="Ex: 21" required />
+            </div>
+          </div>
+          <div class="number-group">
+            <label for="phone">Número de Telefone:</label>
+            <div class="container-number">
+              <input
+                type="text"
+                id="phone"
+                placeholder="Ex: 987654321"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <label for="message">Mensagem:</label>
+        <div class="textarea-grid">
+          <textarea
+            id="message"
+            placeholder="Digite sua mensagem aqui..."
+            required
+          ></textarea>
+
+          <button type="submit">
+            <i class="bx bx-btn bx-chevron-right"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("whatsappForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const phoneArea = document
+            .getElementById("phoneArea")
+            .value.replace(/\D/g, "");
+
+          const phone = document
+            .getElementById("phone")
+            .value.replace(/\D/g, "");
+
+          const message = encodeURIComponent(
+            document.getElementById("message").value
+          );
+
+          if (phone && message) {
+            const whatsappUrl = `https://wa.me/55${phoneArea}${phone}?text=${message}`;
+            window.open(whatsappUrl, "_blank");
+          } else {
+            alert("Por favor, preencha todos os campos.");
+          }
+        });
+    </script>
+  </body>
+</html>
